@@ -15,10 +15,21 @@ class App extends Component{
         }
     }
 
-    componentDidMount(){
-        fetch('https://jsonplaceholder.typicode.com/users')
+   async componentDidMount(){
+      /*  fetch('https://jsonplaceholder.typicode.com/users')
         .then(response => response.json())
-        .then(user => this.setState({ robots: user}));
+        .then(user => this.setState({ robots: user}));*/
+
+        const res = await fetch('https://jsonplaceholder.typicode.com/users');
+        const data = await res.json();
+        this.setState({ robots: data});
+        
+
+       /* const p = Promise.all([fetch('https://jsonplaceholder.typicode.com/users'),fetch('https://jsonplaceholder.typicode.com/posts')]);
+        const d = await p;
+        const data = await d[0].json();
+        this.setState({ robots: data});*/
+
     }
 
     onSearchChange = (event) =>{
